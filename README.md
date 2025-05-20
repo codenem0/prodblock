@@ -1,2 +1,2 @@
 # prodblock
-productivity journal
+productivity journal chrome extension
