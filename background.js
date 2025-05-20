@@ -1,10 +1,21 @@
-const blockedUrls = [ "*://*.twitter.com/*", "*://*.reddit.com/*" ];
+const blockedUrls = [
+  { hostSuffix: "twitter.com" },
+  { hostSuffix: "reddit.com" },
+  { hostSuffix: "x.com" }
+];
 
-chrome.webNavigation.onBeforeNavigate.addListener((details) => { if (details.frameId !== 0) return;
+chrome.webNavigation.onBeforeNavigate.addListener(
+    function(details) { 
+        if (details.frameId !== 0) return;
+   
+        chrome.storage.local.set({ 'originalUrl': details.url });
 
-const storeUrl = chrome.storage.local.set({ 'originalUrl' : details.url });
+        chrome.tabs.update(details.tabId, { 
+            url: chrome.runtime.getURL("redirect.html")
+    });
 
-const redirectUrl = chrome.tabs.update(details.tabId, { url: chrome.runtime.getURL("redirect.html")});
+    }, 
 
-}, { url: blockedUrls.map(site => ({ urlMatches: site })) 
-});
+    { url: blockedUrls }
+
+);
