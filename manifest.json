@@ -1,0 +1,8 @@
+{ 
+    "manifest_version": 3,
+    "name": "prodblock",
+    "version": "1.0",
+    "description": "An extension to block domains and a journal for productivity.",
+    "permissions": ["storage", "webNavigation"],
+    "host_permissions": ["*://*.twitter.com/*", "*://*.instagram.com/*", "*://*.reddit.com/*"],
+}
