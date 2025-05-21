@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Pause...</title>
+        <title>Pause and Reflect</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -12,27 +12,53 @@
                 margin: 0;
                 background-color: #ffffff;
             }
+            .center-container {
+                width: 800px;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
             h1 {
                 color: #333;
                 margin-bottom: 20px;
+                text-align: center;
+                width: 100%;
+                opacity: 0;
+                animation: fadeIn 1s ease-in forwards;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
             }
             .journal-container {
-                width: 80%;
-                max-width: 600px;
+                width: 800px;
+                max-width: 800px;
+                margin: 0 auto;
             }
             textarea{ 
                 width: 100%;
-                height: 200px;
+                height: 400px;
                 padding: 10px;
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 font-family: Arial, sans-serif;
                 font-size: 16px;
                 resize: none;
+                box-sizing: border-box;
             }
         </style>
     </head>
     <body>
-        <h1>How are you feeling right now?</h1>
+        <button id="audio-toggle" style="position: absolute; top: 20px; left: 20px; z-index: 10;">🔊</button>
+        <audio id="bg-audio" src="backtrack.mp3" autoplay loop hidden></audio>
+        <div class="center-container">
+            <h1 class="fade-in-title">How are you feeling right now?</h1>
+            <div class="journal-container">
+                <textarea id="myJournalentry"></textarea>
+            </div>
+        </div>
     </body>
+    <script src="redirect.js"></script>
 </html>
